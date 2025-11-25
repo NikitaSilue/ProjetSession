@@ -31,22 +31,25 @@
                         <TextBlock x:Name="tbxCode" Text="{x:Bind Matricule, Mode=OneWay}" Foreground="Green" TextAlignment="Center" />
                         <TextBlock Text="{x:Bind Nom}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind Prenom}" TextAlignment="Center"/>
-                        <TextBlock Text="{x:Bind dateNaissance}" TextAlignment="Center"/>
+                        <TextBlock Text="{x:Bind DateNaissanceString, Mode=OneWay}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind Email}" TextAlignment="Center"/>
-                        <TextBlock Text="{x:Bind DateEmbauche}" TextAlignment="Center"/>
+                        <TextBlock Text="{x:Bind DateEmbaucheString}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind TauxHoraires}" TextAlignment="Center"/>
                         
                         <TextBlock Text="{x:Bind Statut}" Foreground="Green" TextAlignment="Center"/>
-                        <Button x:Name="btnSupprimer" Click="btnSupprimer_Click" >
-                            <StackPanel Orientation="Horizontal" Spacing="20">
-                                <SymbolIcon Symbol="Delete"/>
-                            </StackPanel>
-                        </Button>
-                        <Button x:Name="btnModifier" Click="btnModifier_Click" >
-                            <StackPanel Orientation="Horizontal" Spacing="20">
-                                <SymbolIcon Symbol="Edit"/>
-                            </StackPanel>
-                        </Button>
+                        <StackPanel Orientation="Horizontal">
+                             <Button x:Name="btnSupprimer" Click="btnSupprimer_Click" >
+                             <StackPanel Orientation="Horizontal" Spacing="20">
+                                 <SymbolIcon Symbol="Delete"/>
+                             </StackPanel>
+                             </Button>
+                             <Button x:Name="btnModifier" Click="btnModifier_Click" >
+                                 <StackPanel Orientation="Horizontal" Spacing="20">
+                                     <SymbolIcon Symbol="Edit"/>
+                                 </StackPanel>
+                             </Button>
+                        </StackPanel>
+                       
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

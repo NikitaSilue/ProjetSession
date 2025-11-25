@@ -15,7 +15,7 @@
             <StackPanel Spacing="5">
                 
                 <TextBlock x:Name="tblEntete" Text="AJOUTER UN EMPLOYÉ CI-DESSOUS" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="40" FontSize="30" TextAlignment="Center"/>
-
+    
 
                 <!--NOM-->
                 <TextBlock Text="Nom de l'employé"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>

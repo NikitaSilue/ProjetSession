@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PROJETSESSION.Classes
 {
-    internal class Employes
+    public class Employes
     {
         public string matricule;
         public string nom;
@@ -40,9 +40,11 @@ namespace PROJETSESSION.Classes
         public string Nom { get => nom; set => nom = value; }
         public string Prenom { get => prenom; set => prenom = value; }
         public DateTime DateNaissance { get => dateNaissance; set => dateNaissance = value; }
+        public String DateNaissanceString { get => dateNaissance.ToString("d");  }
         public string Email { get => email; set => email = value; }
         public string Adresse { get => adresse; set => adresse = value; }
         public DateTime DateEmbauche { get => dateEmbauche; set => dateEmbauche = value; }
+        public String DateEmbaucheString { get => dateEmbauche.ToString("d"); }
         public decimal TauxHoraires { get => tauxHoraires; set => tauxHoraires = value; }
         public string Photo { get => photo; set => photo = value; }
         public string Statut { get => statut; set => statut = value; }

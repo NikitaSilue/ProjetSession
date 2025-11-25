@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PROJETSESSION.Boites_de_dialogue;
 using PROJETSESSION.Classes;
 using PROJETSESSION.Pages.ProjetPages;
 using PROJETSESSION.Singletons;
@@ -65,19 +66,27 @@ namespace PROJETSESSION.Pages.EmployePages
             {
                 Debug.WriteLine("Annulé");
             }
+
         }
 
-        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        private async  void btnModifier_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            Employes employe = button.DataContext as Employes;
+            
+
             ///////////////////////////////////////////////////////////////////
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Title = "Suppression";
-            dialog.PrimaryButtonText = "Oui";
-            dialog.SecondaryButtonText = "Non";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Secondary;
-            dialog.Content = "Êtes-vous sûr de vouloir supprimer l'employé ?";
+            DialogueModificationEmploye dialogue = new DialogueModificationEmploye();
+            dialogue.PrimaryButtonText = "Modifier";
+            dialogue.CloseButtonText = "Annuler";
+            dialogue.Title = " Modification d'employé ";
+            dialogue.XamlRoot = this.XamlRoot;
+            dialogue.setEmploye(employe);
+
+            ContentDialogResult resultat = await dialogue.ShowAsync();
+
+            
+
         }
     }
 }

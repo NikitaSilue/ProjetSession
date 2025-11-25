@@ -64,19 +64,21 @@ namespace PROJETSESSION.Singletons
             }
         }
 
-        public void ajouter( string nom, string prenom, DateTime dateNaissance, string email, string adresse,
+        public bool ajouter( string nom, string prenom, DateTime dateNaissance, string email, string adresse,
                         DateTime dateEmbauche, decimal tauxHoraires, string photo, string statut)
         {
+
             try
             {
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into employes values( @nom, @prenom, @dateNaissance, @email, @adresse, @dateEmbauche, @tauxHoraire, @photo, @statut) ";
+                commande.CommandText = "insert into employes(nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo, statut)" +
+                                    " values( @nom, @prenom, @dateNaissance, @email, @adresse, @dateEmbauche, @tauxHoraire, @photo, @statut) ";
                 commande.Parameters.AddWithValue("@nom", nom);
                 commande.Parameters.AddWithValue("@prenom", prenom);
-                commande.Parameters.AddWithValue("@date", dateNaissance);
-                commande.Parameters.AddWithValue("@emaNaissance", email);
+                commande.Parameters.AddWithValue("@dateNaissance", dateNaissance);
+                commande.Parameters.AddWithValue("@email", email);
                 commande.Parameters.AddWithValue("@adresse", adresse);
                 commande.Parameters.AddWithValue("@dateEmbauche", dateEmbauche);
                 commande.Parameters.AddWithValue("@tauxHoraire", tauxHoraires);
@@ -89,18 +91,22 @@ namespace PROJETSESSION.Singletons
                 commande2.CommandText = "select LAST_INSERT_ID() ";
                 var res = commande2.ExecuteScalar();
                 getAllEmployes();
+
+                return true;
             }
             catch (MySqlException ex)
             {
                 Debug.WriteLine(ex.Message);
+                return false;
             }
+
         }
 
-        //modifie l’Email d’un client
-        public void modifier(string matricule, string nom, string prenom, string email, string adresse, decimal tauxHoraire, string photo, string statut)
+        public bool modifier(string matricule, string nom, string prenom, string email, string adresse, decimal tauxHoraire, string photo, string statut)
         {
             try
             {
+                
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
@@ -108,6 +114,7 @@ namespace PROJETSESSION.Singletons
                                         "tauxHoraire = @tauxHoraire, photo = @photo, statut = @statut where matricule = @matricule";
                 commande.Parameters.AddWithValue("@matricule", matricule);
                 commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@prenom", prenom);
                 commande.Parameters.AddWithValue("@email", email);
                 commande.Parameters.AddWithValue("@adresse", adresse);
                 commande.Parameters.AddWithValue("@tauxHoraire", tauxHoraire);
@@ -117,9 +124,12 @@ namespace PROJETSESSION.Singletons
                 int i = commande.ExecuteNonQuery();
 
                 getAllEmployes();
+
+                return true;
             }
             catch (MySqlException ex)
             {
+                return false;
                 Debug.WriteLine(ex.Message);
             }
         }

@@ -13,6 +13,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Boites de dialogue\DialogueModificationEmploye.xaml" />
     <None Remove="Pages\ClientPages\PageAfficherClient.xaml" />
     <None Remove="Pages\ClientPages\PageAjouterClient.xaml" />
     <None Remove="Pages\ClientPages\PageModifierClient.xaml" />
@@ -84,6 +85,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\ProjetPages\PageAfficherProjets.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Boites de dialogue\DialogueModificationEmploye.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -5,9 +5,11 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PROJETSESSION.Classes;
 using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,7 +32,7 @@ namespace PROJETSESSION.Pages.EmployePages
 
         }
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
             bool valide = true;
             errorNom.Text = string.Empty;
@@ -99,9 +101,29 @@ namespace PROJETSESSION.Pages.EmployePages
                 DateTime dateNaissance = dpkDateNaissance.Date.DateTime;
                 string statut = cmbxStatut.SelectedItem?.ToString();
 
-                SingletonEmpploye.getInstance().ajouter(nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraires, photo, statut);
+                if(SingletonEmpploye.getInstance().ajouter(nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraires, photo, statut))
+                    Frame.Navigate(typeof(AfficherEmployes));
+                else
+                {
+                    ContentDialog dialog = new ContentDialog();
+                    dialog.XamlRoot = this.XamlRoot;
+                    dialog.Title = "Échec de l'ajout";
+                    dialog.PrimaryButtonText = "Ok";
+                    dialog.CloseButtonText = "Annuler";
+                    dialog.DefaultButton = ContentDialogButton.Secondary;
+                    dialog.Content = "L'employé n'a pas pu être ajouté. \nVeuillez réesseyer";
 
-                Frame.Navigate(typeof(AfficherEmployes));
+                    ContentDialogResult resultat = await dialog.ShowAsync();
+                    if (resultat == ContentDialogResult.Primary)
+                    {
+                        Debug.WriteLine("Nouvelle tentative");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Annulé");
+                    }
+
+                }
             }
 
         }
