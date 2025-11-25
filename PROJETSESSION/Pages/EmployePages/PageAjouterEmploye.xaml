@@ -10,80 +10,76 @@
 
     <Grid Background="Beige">
 
-        <StackPanel Spacing="5">
-            <TextBlock x:Name="tblEntete" Text="AJOUTER UN EMPLOYE CI-DESSOUS" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="40" FontSize="30" TextAlignment="Center"/>
+        <ScrollView>
 
-            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+            <StackPanel Spacing="5">
+                
+                <TextBlock x:Name="tblEntete" Text="AJOUTER UN EMPLOYÉ CI-DESSOUS" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="40" FontSize="30" TextAlignment="Center"/>
+
+
                 <!--NOM-->
-                <TextBlock Text="Nom de l'employé"  FontWeight="Bold" />
+                <TextBlock Text="Nom de l'employé"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox x:Name="tbxNom" Width="300" />
-                <TextBlock x:Name="errorNom" Foreground="Red" FontSize="12"  />
+                <TextBlock x:Name="errorNom" Foreground="Red" FontSize="12"  TextAlignment="Center"/>
 
                 <!--PRENOM-->
-                <TextBlock Text="Prénom"  FontWeight="Bold" />
+                <TextBlock Text="Prénom"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox x:Name="tbxPrenom" Width="300" />
-                <TextBlock x:Name="errorPrenom" Foreground="Red" FontSize="12"  />
-            </StackPanel>
-
-            <StackPanel Margin="0,35,5,5" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-                 <!--DATE DE NAISSANCE-->
-                <TextBlock Text="Date de naissance"  FontWeight="Bold" />
-                <CalendarDatePicker x:Name="calendarDateNaissance" DateFormat="{}{day.integer}/{month.integer}/{year.full}" Width="150" />
-                <TextBlock x:Name="errorNaissance" Foreground="Red" FontSize="12"/>   
-                
-                 <!--DATE D'EMBAUCHE-->
-                <TextBlock Text="Date d'embauche"   FontWeight="Bold" />
-                <CalendarDatePicker x:Name="calendarDateEmbauche" DateFormat="{}{day.integer}/{month.integer}/{year.full}" Width="150"/>
-                <TextBlock x:Name="errorEmbauche" Foreground="Red" FontSize="12"  />
-            </StackPanel>
+                <TextBlock x:Name="errorPrenom" Foreground="Red" FontSize="12"  TextAlignment="Center"/>
 
 
-            <StackPanel Margin="0,15,5,5" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                <!--DATE DE NAISSANCE-->
+                <TextBlock Text="Date de naissance"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <DatePicker x:Name="dpkDateNaissance" Width="300" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="errorNaissance" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+
+                <!--DATE D'EMBAUCHE-->
+                <TextBlock Text="Date d'embauche"   FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <DatePicker x:Name="dpkDateEmbauche"  Width="300" HorizontalAlignment="Center" />
+                <TextBlock x:Name="errorEmbauche" Foreground="Red" FontSize="12"  TextAlignment="Center"/>
+
+
+
                 <!--EMAIL-->
-                <TextBlock Text="Email"  FontWeight="Bold" />
-                <TextBox x:Name="tbxEmail"  Width="300"/>
-                <TextBlock x:Name="errorEmail" Foreground="Red" FontSize="12"  />
-            </StackPanel>
+                <TextBlock Text="Email"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <TextBox x:Name="tbxEmail"  Width="300" />
+                <TextBlock x:Name="errorEmail" Foreground="Red" FontSize="12" TextAlignment="Center"/>
 
-            <StackPanel Margin="0,15,5,5" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-                 <!--ADRESSE-->
-                <TextBlock Text="Adresse"  FontWeight="Bold" />
+
+
+                <!--ADRESSE-->
+                <TextBlock Text="Adresse"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox  x:Name="tbxAdresse"  Width="300"/>
-                <TextBlock x:Name="errorAdresse" Foreground="Red" FontSize="12"/>
-            </StackPanel>
+                <TextBlock x:Name="errorAdresse" Foreground="Red" FontSize="12" TextAlignment="Center"/>
 
 
-            <StackPanel Margin="0,15,5,5" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-               <!--TAUX HORAIRE-->
-                <TextBlock Text="Taux horaires($)"  FontWeight="Bold" />
-                <NumberBox x:Name="nbrTauxHoraire" AcceptsExpression="True" Width="150" SpinButtonPlacementMode="Inline"/>
-                <TextBlock x:Name="errorTauxHoraires" Foreground="Red" FontSize="12"/>
+
+                <!--TAUX HORAIRE-->
+                <TextBlock Text="Taux horaires($)"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <NumberBox x:Name="nbrTauxHoraire" AcceptsExpression="True" Width="300" SpinButtonPlacementMode="Inline"/>
+                <TextBlock x:Name="errorTauxHoraires" Foreground="Red" FontSize="12" TextAlignment="Center"/>
 
                 <!--STATUT DE L'EMPLOYE-->
-                <TextBlock Text="Statut de l'employé" HorizontalAlignment="Left" FontWeight="Bold"/>
-                <ComboBox x:Name="cmbxStatut"  Width="150">
+                <TextBlock Text="Statut de l'employé" FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <ComboBox x:Name="cmbxStatut"  Width="300" HorizontalAlignment="Center" >
                     <x:String>Journalier</x:String>
                     <x:String>Permanent</x:String>
                 </ComboBox>
-                <TextBlock x:Name="errorStatut" Foreground="Red" FontSize="12"  TextAlignment="Left"/>
-
-            </StackPanel>
+                <TextBlock x:Name="errorStatut" Foreground="Red" FontSize="12"  TextAlignment="Center" />
 
 
-            <StackPanel Margin="0,15,5,5" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
                 <!--PHOTO-->
-                <TextBlock Text="Photo d'identité" HorizontalAlignment="Left" FontWeight="Bold"/>
+                <TextBlock Text="Photo d'identité" FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox x:Name="tbxPhoto" Width="300" />
-                <TextBlock x:Name="errorPhoto" Foreground="Red" FontSize="12" HorizontalAlignment="Left" />
+                <TextBlock x:Name="errorPhoto" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+
+
+
+                <Button x:Name="btnAjouter" Click="btnAjouter_Click" HorizontalAlignment="Center" Width="200" Margin="20" Foreground="Green">Ajouter l'employé</Button>
+
             </StackPanel>
 
-            <StackPanel Margin="0,160,5,5">
-                <Button x:Name="btnAjouter" Click="btnAjouter_Click" HorizontalAlignment="Center" Width="200" Margin="20">Ajouter l'employé</Button>
-            </StackPanel>
-            
-
-        </StackPanel>
-
+        </ScrollView>
 
     </Grid>
 </Page>

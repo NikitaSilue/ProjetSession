@@ -6,9 +6,50 @@
     xmlns:local="using:PROJETSESSION.Pages.ClientPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:classes="using:PROJETSESSION.Classes">
 
     <Grid Background="Beige">
-        <TextBlock Text="AFFICHER CLIENTS" FontSize="33" TextAlignment="Center"/>
+       
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+
+
+            <TextBlock Text="LISTE DE TOUS LES CLIENTS"  TextAlignment="Center" FontSize="32" Margin="20"/>
+ <ScrollView>
+
+            <GridView x:Name="lvListeClients" Grid.Row="1">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="classes:Clients">
+                        <StackPanel  Margin="20" >
+
+                            <TextBlock x:Name="tbxIdentifiant" Text="{x:Bind identifiant, Mode=OneWay}" Foreground="Green" TextAlignment="Center" />
+                            <TextBlock Text="{x:Bind nom}" TextAlignment="Center"/>
+                            <TextBlock Text="{x:Bind adresse}" TextAlignment="Center"/>
+                            <TextBlock Text="{x:Bind numeroTelephone}" TextAlignment="Center"/>
+                            <TextBlock Text="{x:Bind email}" TextAlignment="Center"/>
+                            <Button x:Name="btnSupprimer" Click="btnSupprimer_Click">
+                                <StackPanel  Orientation="Horizontal" Spacing="20">
+                                    <SymbolIcon Symbol="Delete"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnModifier" Click="btnModifier_Click">
+                                <StackPanel Orientation="Horizontal" Spacing="20">
+                                    <SymbolIcon Symbol="Edit"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+</ScrollView>
+
     </Grid>
+    
+
 </Page>

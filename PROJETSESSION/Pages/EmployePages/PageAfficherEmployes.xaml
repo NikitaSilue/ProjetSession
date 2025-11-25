@@ -37,12 +37,22 @@
                         <TextBlock Text="{x:Bind TauxHoraires}" TextAlignment="Center"/>
                         
                         <TextBlock Text="{x:Bind Statut}" Foreground="Green" TextAlignment="Center"/>
+                        <Button x:Name="btnSupprimer" Click="btnSupprimer_Click" >
+                            <StackPanel Orientation="Horizontal" Spacing="20">
+                                <SymbolIcon Symbol="Delete"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnModifier" Click="btnModifier_Click" >
+                            <StackPanel Orientation="Horizontal" Spacing="20">
+                                <SymbolIcon Symbol="Edit"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
 
-        <Button x:Name="btnPageAjout" Click="btnAjout">Cliquez ici pour ajouter un nouvel employé</Button>
+        
 
         </Grid>
 </Page>

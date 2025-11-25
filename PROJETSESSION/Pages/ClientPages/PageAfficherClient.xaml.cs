@@ -5,8 +5,11 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PROJETSESSION.Classes;
+using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,6 +29,44 @@ namespace PROJETSESSION.Pages.ClientPages
         public PageAfficherClient()
         {
             InitializeComponent();
+            lvListeClients.ItemsSource = SingletonClient.getInstance().Liste;
+            SingletonClient.getInstance().getAllClients();
+        }
+
+        private async void btnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Supprimer un client";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = "Êtes-vous sûr de vouloir supprimer le client de l'entreprise ?";
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                Button button = sender as Button;
+                Clients client = button.DataContext as Clients;
+                int identifiant = client.identifiant;
+
+                SingletonClient.getInstance().supprimer(identifiant);
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Debug.WriteLine("Bouton Non sélectionné");
+            }
+            else
+            {
+                Debug.WriteLine("Annulé");
+            }
+        }
+
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

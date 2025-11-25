@@ -20,7 +20,7 @@ namespace PROJETSESSION.Singletons
 
         private SingletonEmpploye()
         {
-            connectionString = "Server= cours.cegep3r.info;Database=a2025_420345ri_gr2_2335631-goua-myriam-clothilde-silue;Uid=2335631;Pwd=2335631;";
+            connectionString = "Server= cours.cegep3r.info;Database=a2025_420335-345ri_greq30;Uid=2335631;Pwd=2335631;";
             listeEmployes = new ObservableCollection<Employes>();
         }
 
@@ -97,20 +97,46 @@ namespace PROJETSESSION.Singletons
         }
 
         //modifie l’Email d’un client
-        public void modifier(int id, string email)
+        public void modifier(string matricule, string nom, string prenom, string email, string adresse, decimal tauxHoraire, string photo, string statut)
         {
             try
             {
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "update employes set email = @email where id = @id";
-                commande.Parameters.AddWithValue("@id", id);
+                commande.CommandText = "update employes set nom = @nom, prenom = @prenom, email = @email, adresse = @adresse, " +
+                                        "tauxHoraire = @tauxHoraire, photo = @photo, statut = @statut where matricule = @matricule";
+                commande.Parameters.AddWithValue("@matricule", matricule);
+                commande.Parameters.AddWithValue("@nom", nom);
                 commande.Parameters.AddWithValue("@email", email);
+                commande.Parameters.AddWithValue("@adresse", adresse);
+                commande.Parameters.AddWithValue("@tauxHoraire", tauxHoraire);
+                commande.Parameters.AddWithValue("@photo", photo);
+                commande.Parameters.AddWithValue("@statut", statut);
                 con.Open();
                 int i = commande.ExecuteNonQuery();
 
-                getAllEmployes(); 
+                getAllEmployes();
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public void supprimer(string matricule)
+        {
+            try
+            {
+                using MySqlConnection con = new MySqlConnection(connectionString);
+                using MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "delete from employes where matricule = @matricule";
+                commande.Parameters.AddWithValue("@matricule", matricule);
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                getAllEmployes(); //permet de recharger la liste des employes après un ajout
             }
             catch (MySqlException ex)
             {

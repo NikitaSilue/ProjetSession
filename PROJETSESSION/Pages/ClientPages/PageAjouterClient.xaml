@@ -8,7 +8,35 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="Beige">
+        <ScrollView>
+
+            <StackPanel>
+                
+                
+                <!--NOM-->
+                <TextBlock Text="Nom du client"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <TextBox x:Name="tbxNom" Width="300" />
+                <TextBlock x:Name="errorNom" Foreground="Red" FontSize="12"  TextAlignment="Center"/>
+                <!--ADRESSE-->
+                <TextBlock Text="Adresse"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <TextBox  x:Name="tbxAdresse"  Width="300"/>
+                <TextBlock x:Name="errorAdresse" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+                <!--NUMERO DE TELEPHONE-->
+                <TextBlock Text="Numéro de téléphone"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <NumberBox x:Name="nbrTelephone" AcceptsExpression="True" Width="300" SpinButtonPlacementMode="Inline"/>
+                <TextBlock x:Name="errorTelephone" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+                <!--EMAIL-->
+                <TextBlock Text="Email"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <TextBox x:Name="tbxEmail"  Width="300" />
+                <TextBlock x:Name="errorEmail" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+
+
+                <Button x:Name="btnAjouter" Click="btnAjouter_Click" HorizontalAlignment="Center" Width="200" Margin="20" Foreground="Green">Ajouter le client</Button>
+            </StackPanel>
+            
+        </ScrollView>
+        
 
     </Grid>
 </Page>

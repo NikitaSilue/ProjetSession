@@ -28,15 +28,21 @@
             </MenuBarItem>
         </MenuBar>
 
-        <NavigationView Grid.Row="1" 
+        <NavigationView Grid.Row="2" 
                  PaneDisplayMode="Left" 
                  PaneTitle="PROJETS DE SESSION" 
                  x:Name="navView" 
                  ItemInvoked="navView_ItemInvoked">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Gestion des employés" x:Name="iEmploye" Icon="List"  Tag="afficherEmploye"/>
+                <NavigationViewItem Content="Ajouter des employés" x:Name="iEmployeAjout" Icon="Add"  Tag="ajouterEmploye"/>
+                <NavigationViewItem Content="Modifier des employés" x:Name="iEmployeModifier" Icon="Add"  Tag="ModifierEmploye"/>
+                <NavigationViewItemSeparator />
                 <NavigationViewItem Content="Gestions des clients" x:Name="iClients" Icon="List" Tag="afficherClients"/>
+                <NavigationViewItem Content="Ajouter des clients" x:Name="iClientsAjout" Icon="Add" Tag="ajouterClients"/>
+                <NavigationViewItemSeparator />
                 <NavigationViewItem Content="Gestions des projets" x:Name="iProjets" Icon="List" Tag="afficherProjets"/>
+                <NavigationViewItem Content="Ajouter des projets" x:Name="iProjetsAjout" Icon="Add" Tag="AjouterProjets"/>
             </NavigationView.MenuItems>
 
             <Frame x:Name="mainFrame"/>

@@ -10,5 +10,23 @@
 
     <Grid>
 
+        <StackPanel Spacing="12">
+
+            <TextBox x:Name="tbxNom" Header="Nom"/>
+            <TextBox x:Name="tbxPrenom" Header="Prénom"/>
+            <TextBox x:Name="tbxEmail" Header="Email"/>
+            <TextBox x:Name="tbxAdresse" Header="Adresse"/>
+
+            <CalendarDatePicker x:Name="dpkDateNaissance" Header="Date de naissance"/>
+            <CalendarDatePicker x:Name="dpkDateEmbauche" Header="Date d'embauche"/>
+
+            <NumberBox x:Name="nbrTauxHoraire" Header="Taux horaire"/>
+            <ComboBox x:Name="cmbStatut" Header="Statut">
+                <ComboBoxItem Content="Journalier"/>
+                <ComboBoxItem Content="Permanent"/>
+            </ComboBox>
+
+        </StackPanel>
+
     </Grid>
 </Page>

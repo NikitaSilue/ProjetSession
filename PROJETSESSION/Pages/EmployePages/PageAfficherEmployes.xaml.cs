@@ -5,9 +5,12 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PROJETSESSION.Classes;
 using PROJETSESSION.Pages.ProjetPages;
+using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,12 +30,54 @@ namespace PROJETSESSION.Pages.EmployePages
         public AfficherEmployes()
         {
            InitializeComponent();
+            lvListeEmploye.ItemsSource = SingletonEmpploye.getInstance().Liste;
+            SingletonEmpploye.getInstance().getAllEmployes();
         }
 
 
-        private void btnAjout(object sender, RoutedEventArgs e)
+        
+        private async void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AjouterEmploye));
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Suppression";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = "Êtes-vous sûr de vouloir supprimer l'employé ?";
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                Button button = sender as Button;
+                Employes employe = button.DataContext as Employes;
+                string matricule = employe.matricule;
+
+                SingletonEmpploye.getInstance().supprimer(matricule);
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Debug.WriteLine("Bouton Non sélectionné");
+            }
+            else
+            {
+                Debug.WriteLine("Annulé");
+            }
+        }
+
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+            ///////////////////////////////////////////////////////////////////
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Suppression";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = "Êtes-vous sûr de vouloir supprimer l'employé ?";
         }
     }
 }
