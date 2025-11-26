@@ -5,11 +5,11 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using PROJETSESSION.Pages.EmployePages;
+using MySqlX.XDevAPI;
+using PROJETSESSION.Classes;
 using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,26 +20,32 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace PROJETSESSION.Pages.ClientPages
+namespace PROJETSESSION.Boites_de_dialogue
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class PageAjouterClient : Page
+   
+    public sealed partial class DialogueModificationClient : ContentDialog
     {
-        public PageAjouterClient()
+        Clients client;
+        public DialogueModificationClient()
         {
             InitializeComponent();
         }
+        public void setClient(Clients client)
+        {
+            this.client = client;
+            tbxNom.Text = client.nom;
+            tbxEmail.Text = client.email;
+            tbxAdresse.Text = client.adresse;
+            nbrTelephone.Value = Convert.ToInt32(client.numeroTelephone);
+        }
 
-        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             bool valide = true;
             errorNom.Text = string.Empty;
+            errorEmail.Text = string.Empty;
             errorAdresse.Text = string.Empty;
             errorTelephone.Text = string.Empty;
-            errorEmail.Text = string.Empty;
-
 
             //VALIDATION 
             //NOM
@@ -77,7 +83,7 @@ namespace PROJETSESSION.Pages.ClientPages
                 errorTelephone.Text = "Le numéro de téléphone ne peut pas être vide.";
                 valide = false;
             }
-          
+
             if (nbrTelephone.Value < 1000000000 || nbrTelephone.Value > 9999999999)
             {
                 errorTelephone.Text = "Le numéro de téléphone doit contenir 10 chiffres.";
@@ -86,37 +92,24 @@ namespace PROJETSESSION.Pages.ClientPages
 
             if (valide)
             {
+                //string matricule;
                 string nom = tbxNom.Text;
                 string email = tbxEmail.Text;
                 string adresse = tbxAdresse.Text;
-                int numeroTelephone = (int) nbrTelephone.Value;
+                int numeroTelephone = (int)nbrTelephone.Value;
 
-                if (SingletonClient.getInstance().ajouter(nom, adresse, numeroTelephone, email))
-                    Frame.Navigate(typeof(PageAfficherClient));
-                else
+                if (SingletonClient.getInstance().modifier(client.identifiant, nom, adresse, numeroTelephone, email) == false)
                 {
-                    ContentDialog dialog = new ContentDialog();
-                    dialog.XamlRoot = this.XamlRoot;
-                    dialog.Title = "Échec de l'ajout";
-                    dialog.PrimaryButtonText = "Ok";
-                    dialog.CloseButtonText = "Annuler";
-                    dialog.DefaultButton = ContentDialogButton.Secondary;
-                    dialog.Content = "Le client n'a pas pu être ajouté. \nVeuillez réesseyer";
-
-                    ContentDialogResult resultat = await dialog.ShowAsync();
-                    if (resultat == ContentDialogResult.Primary)
-                    {
-                        Debug.WriteLine("Nouvelle tentative");
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Annulé");
-                    }
-
+                    args.Cancel = true;
                 }
+                else
+                    args.Cancel = false;
+
             }
-
-
+            else
+            {
+                args.Cancel = true;
+            }
         }
     }
 }

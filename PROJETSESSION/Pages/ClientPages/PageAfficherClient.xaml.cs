@@ -5,6 +5,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
+using PROJETSESSION.Boites_de_dialogue;
 using PROJETSESSION.Classes;
 using PROJETSESSION.Singletons;
 using System;
@@ -31,6 +33,7 @@ namespace PROJETSESSION.Pages.ClientPages
             InitializeComponent();
             lvListeClients.ItemsSource = SingletonClient.getInstance().Liste;
             SingletonClient.getInstance().getAllClients();
+
         }
 
         private async void btnSupprimer_Click(object sender, RoutedEventArgs e)
@@ -64,9 +67,21 @@ namespace PROJETSESSION.Pages.ClientPages
             }
         }
 
-        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        private async void btnModifier_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            Clients client = button.DataContext as Clients;
 
+
+            ///////////////////////////////////////////////////////////////////
+            DialogueModificationClient dialogue = new DialogueModificationClient();
+            dialogue.XamlRoot = this.XamlRoot;
+            dialogue.PrimaryButtonText = "Modifier";
+            dialogue.CloseButtonText = "Annuler";
+            dialogue.Title = " Modification de Client ";
+            dialogue.setClient(client);
+
+            ContentDialogResult resultat = await dialogue.ShowAsync();
         }
     }
 }

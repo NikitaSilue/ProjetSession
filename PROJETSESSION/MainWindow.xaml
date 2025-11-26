@@ -36,7 +36,6 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Gestion des employés" x:Name="iEmploye" Icon="List"  Tag="afficherEmploye"/>
                 <NavigationViewItem Content="Ajouter des employés" x:Name="iEmployeAjout" Icon="Add"  Tag="ajouterEmploye"/>
-                <NavigationViewItem Content="Modifier des employés" x:Name="iEmployeModifier" Icon="Add"  Tag="ModifierEmploye"/>
                 <NavigationViewItemSeparator />
                 <NavigationViewItem Content="Gestions des clients" x:Name="iClients" Icon="List" Tag="afficherClients"/>
                 <NavigationViewItem Content="Ajouter des clients" x:Name="iClientsAjout" Icon="Add" Tag="ajouterClients"/>

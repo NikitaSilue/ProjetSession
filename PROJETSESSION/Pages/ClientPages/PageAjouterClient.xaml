@@ -11,9 +11,11 @@
     <Grid Background="Beige">
         <ScrollView>
 
-            <StackPanel>
-                
-                
+            <StackPanel Spacing="10">
+
+                <TextBlock x:Name="tblEntete" Text="AJOUTER UN CLIENT CI-DESSOUS" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="40" FontSize="30" TextAlignment="Center"/>
+
+
                 <!--NOM-->
                 <TextBlock Text="Nom du client"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox x:Name="tbxNom" Width="300" />
@@ -22,14 +24,15 @@
                 <TextBlock Text="Adresse"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox  x:Name="tbxAdresse"  Width="300"/>
                 <TextBlock x:Name="errorAdresse" Foreground="Red" FontSize="12" TextAlignment="Center"/>
-                <!--NUMERO DE TELEPHONE-->
-                <TextBlock Text="Numéro de téléphone"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
-                <NumberBox x:Name="nbrTelephone" AcceptsExpression="True" Width="300" SpinButtonPlacementMode="Inline"/>
-                <TextBlock x:Name="errorTelephone" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+               
                 <!--EMAIL-->
                 <TextBlock Text="Email"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
                 <TextBox x:Name="tbxEmail"  Width="300" />
                 <TextBlock x:Name="errorEmail" Foreground="Red" FontSize="12" TextAlignment="Center"/>
+                <!--NUMERO DE TELEPHONE-->
+                <TextBlock Text="Numéro de téléphone"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                <NumberBox x:Name="nbrTelephone" AcceptsExpression="True" Width="300" SpinButtonPlacementMode="Inline"/>
+                <TextBlock x:Name="errorTelephone" Foreground="Red" FontSize="12" TextAlignment="Center"/>
 
 
                 <Button x:Name="btnAjouter" Click="btnAjouter_Click" HorizontalAlignment="Center" Width="200" Margin="20" Foreground="Green">Ajouter le client</Button>

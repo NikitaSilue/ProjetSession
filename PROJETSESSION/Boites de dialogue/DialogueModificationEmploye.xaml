@@ -42,6 +42,7 @@
                 <TextBox x:Name="tbxPhoto" Header="Photo"/>
                 <TextBlock x:Name="errorPhoto" Foreground="Red" FontSize="12" />
         </StackPanel>
+            
 
         </ScrollViewer>
     </Grid>

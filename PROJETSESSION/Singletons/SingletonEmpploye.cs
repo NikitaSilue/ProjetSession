@@ -54,8 +54,8 @@ namespace PROJETSESSION.Singletons
                     decimal tauxHoraire = r.GetDecimal("tauxHoraire");
                     string photo = r.GetString("photo");
                     string statut = r.GetString("statut");
-                    Employes unMeuble = new Employes(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo, statut);
-                    listeEmployes.Add(unMeuble);
+                    Employes unEmploye = new Employes(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo, statut);
+                    listeEmployes.Add(unEmploye);
                 }
             }
             catch (MySqlException ex)

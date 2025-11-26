@@ -20,7 +20,7 @@
 
 
         
-    <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="LISTE DES EMPLOYÉS"  FontSize="32" Margin="20"/>
+    <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="LISTE DES EMPLOYÉS" Foreground="Green"  FontSize="32" Margin="20"/>
         <GridView x:Name="lvListeEmploye" Grid.Row="1">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Employes">

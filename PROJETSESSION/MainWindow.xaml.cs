@@ -46,9 +46,6 @@ namespace PROJETSESSION
                     case "iEmployeAjout":
                         mainFrame.Navigate(typeof(AjouterEmploye));
                         break;
-                    case "iEmployeModifier":
-                        mainFrame.Navigate(typeof(ModifierEmploye));
-                        break;
                     case "iClients":
                         mainFrame.Navigate(typeof(PageAfficherClient));
                         break;

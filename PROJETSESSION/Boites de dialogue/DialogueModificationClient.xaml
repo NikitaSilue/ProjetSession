@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="PROJETSESSION.Boites_de_dialogue.DialogueModificationClient"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PROJETSESSION.Boites_de_dialogue"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    >
+
+    <Grid>
+        <StackPanel Spacing="10">
+
+            <TextBox x:Name="tbxNom" Header="Nom"/>
+            <TextBlock x:Name="errorNom" Foreground="Red" FontSize="12" />
+
+            <TextBox x:Name="tbxEmail" Header="Email"/>
+            <TextBlock x:Name="errorEmail" Foreground="Red" FontSize="12" />
+
+            <TextBox x:Name="tbxAdresse" Header="Adresse"/>
+            <TextBlock x:Name="errorAdresse" Foreground="Red" FontSize="12" />
+
+            <NumberBox x:Name="nbrTelephone" Header="Numéro de téléphone"/>
+            <TextBlock x:Name="errorTelephone" Foreground="Red" FontSize="12" />
+
+        </StackPanel>
+    </Grid>
+</ContentDialog>

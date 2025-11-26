@@ -60,14 +60,14 @@ namespace PROJETSESSION.Singletons
             }
         }
 
-        public void ajouter(string nom, string adresse, int numeroTelephone, string email)
+        public bool ajouter(string nom, string adresse, int numeroTelephone, string email)
         {
             try
             {
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into clients values(@nom, @adresse, @numeroTelephhone, @email) ";
+                commande.CommandText = "insert into clients(nom, adresse, numeroTelephone, email) values(@nom, @adresse, @numeroTelephone, @email) ";
                 commande.Parameters.AddWithValue("@nom", nom);
                 commande.Parameters.AddWithValue("@adresse", adresse);
                 commande.Parameters.AddWithValue("@numeroTelephone", numeroTelephone);
@@ -80,34 +80,39 @@ namespace PROJETSESSION.Singletons
                 commande2.CommandText = "select LAST_INSERT_ID() ";
                 var res = commande2.ExecuteScalar();
                 getAllClients();
+                return true;
             }
             catch (MySqlException ex)
             {
                 Debug.WriteLine(ex.Message);
+                return false;
             }
         }
 
         //modifie l’Email d’un client
-        public void modifier(int identifiant, string nom, string adresse, int numeroTelephone ,string email)
+        public bool modifier(int identifiant, string nom, string adresse, int numeroTelephone ,string email)
         {
             try
             {
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "update clients set nom = @nom, adresse = @adresse, numeroTelephone = @numeroTelehone, email = @email where identifiant = @identifiant";
+                commande.CommandText = "update clients set nom = @nom, adresse = @adresse, numeroTelephone = @numeroTelephone, email = @email where identifiant = @identifiant";
                 commande.Parameters.AddWithValue("@identifiant", identifiant);
                 commande.Parameters.AddWithValue("@nom", nom);
                 commande.Parameters.AddWithValue("@email", email);
                 commande.Parameters.AddWithValue("@numeroTelephone", numeroTelephone);
                 commande.Parameters.AddWithValue("@adresse", adresse);
+                con.Open();
                 int i = commande.ExecuteNonQuery();
 
                 getAllClients();
+                return true;
             }
             catch (MySqlException ex)
             {
                 Debug.WriteLine(ex.Message);
+                return false;
             }
         }
 

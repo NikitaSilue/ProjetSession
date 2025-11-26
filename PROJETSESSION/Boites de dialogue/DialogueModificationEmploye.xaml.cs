@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -39,7 +40,6 @@ public sealed partial class DialogueModificationEmploye : ContentDialog
         tbxAdresse.Text = employe.adresse;
         tbxPhoto.Text = employe.photo;
         cmbStatut.SelectedItem = employe.statut;
-
         nbrTauxHoraire.Value = Convert.ToDouble(employe.TauxHoraires);
     }
 
@@ -54,45 +54,68 @@ public sealed partial class DialogueModificationEmploye : ContentDialog
         errorPhoto.Text = string.Empty;
         errorStatut.Text = string.Empty;
 
+        //VALIDATION 
+        //NOM
         if (string.IsNullOrWhiteSpace(tbxNom.Text))
         {
             errorNom.Text = "Le nom est obligatoire svp.";
             valide = false;
         }
-
+        //PRENOM
         if (string.IsNullOrWhiteSpace(tbxPrenom.Text))
         {
             errorPrenom.Text = "Le prenom est obligatoire svp.";
             valide = false;
         }
+        //EMAIL
         if (string.IsNullOrWhiteSpace(tbxEmail.Text))
         {
             errorEmail.Text = "L'email est obligatoire svp.";
             valide = false;
         }
+        if (!Regex.IsMatch(tbxEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+        {
+            errorEmail.Text = "Format email invalide (ex: exemple@gmail.com).";
+            valide = false;
+        }
+
+        //ADRESSE
         if (string.IsNullOrWhiteSpace(tbxAdresse.Text))
         {
             errorAdresse.Text = "L'adresse est obligatoire svp.";
             valide = false;
         }
-        if (nbrTauxHoraire.Value == 0)
+
+        //TAUX HORAIRE
+        if (nbrTauxHoraire.Value == null)
         {
-            errorTauxHoraire.Text = "Entrer un taux horaire validesvp.";
+            errorTauxHoraire.Text = "Le taux horaire est obligatoire.";
             valide = false;
         }
+        else if (nbrTauxHoraire.Value <= 0)
+        {
+            errorTauxHoraire.Text = "Entrer un taux horaire valide svp.";
+            valide = false;
+        }
+        else if (nbrTauxHoraire.Value < 15)
+        {
+            errorTauxHoraire.Text = "Le taux horaire doit être d'au moins 15 $.";
+            valide = false;
+        }
+        //PHOTO
         if (!Uri.IsWellFormedUriString(tbxPhoto.Text, UriKind.Absolute))
         {
             errorPhoto.Text = "Veuillez entrer un lien valide";
         }
+        //STATUT
         if (cmbStatut.SelectedItem == null)
         {
             errorStatut.Text = "Veuillez sélectionner un statut.";
         }
-        
 
-        if(valide)
+
+        if (valide)
         {
-            //string matricule;
             string nom = tbxNom.Text;
             string prenom = tbxPrenom.Text;
             string email = tbxEmail.Text;
@@ -111,7 +134,7 @@ public sealed partial class DialogueModificationEmploye : ContentDialog
         }
         else
         {
-            args.Cancel = false;
+            args.Cancel = true;
         }
     }
 }

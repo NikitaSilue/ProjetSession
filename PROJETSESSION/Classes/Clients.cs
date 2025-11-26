@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PROJETSESSION.Classes
 {
-    internal class Clients
+    public  class Clients
     {
         public int identifiant;
         public string nom;

@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="Pink" >
+    <Grid Background="Beige" >
         <TextBlock Text="AFFICHER PROJETS" FontSize="33" TextAlignment="Center"/>
     </Grid>
 </Page>
