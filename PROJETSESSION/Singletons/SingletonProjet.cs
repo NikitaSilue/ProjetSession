@@ -99,7 +99,7 @@ namespace PROJETSESSION.Singletons
             }
         }
 
-        public bool modifier(string noProjet, string titre, DateTime dateDebut, string description, decimal budjet, int nbEmploye, decimal totalSalaire, string statut)
+        public bool modifier( string titre, string description, string description1, decimal budjet, int nbEmploye, decimal totalSalaire, string statut)
         {
             try
             {
@@ -107,11 +107,9 @@ namespace PROJETSESSION.Singletons
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "update projets set titre = @titre, dateDebut = @dateDebut, description = @description, budjet = @budjet, " +
+                commande.CommandText = "update projets set titre = @titre, description = @description, budjet = @budjet, " +
                                         "nbEmploye = @nbEmploye, totalSalaire = @totalSalaire, statut = @statut where noProjet = @noProjet";
-                commande.Parameters.AddWithValue("@noProjet", noProjet);
                 commande.Parameters.AddWithValue("@titre", titre);
-                commande.Parameters.AddWithValue("@dateDebut", dateDebut);
                 commande.Parameters.AddWithValue("@description", description);
                 commande.Parameters.AddWithValue("@budjet", budjet);
                 commande.Parameters.AddWithValue("@nbEmploye", nbEmploye);
@@ -127,6 +125,26 @@ namespace PROJETSESSION.Singletons
             catch (MySqlException ex)
             {
                 return false;
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public void supprimer(string noProjet)
+        {
+            try
+            {
+                using MySqlConnection con = new MySqlConnection(connectionString);
+                using MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "delete from projets where noProjet = @noProjet";
+                commande.Parameters.AddWithValue("@noProjet", noProjet);
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                getAllProjets(); 
+            }
+            catch (MySqlException ex)
+            {
                 Debug.WriteLine(ex.Message);
             }
         }

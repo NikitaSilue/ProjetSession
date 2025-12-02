@@ -32,6 +32,18 @@ namespace PROJETSESSION.Classes
             this.statut = statut;
         }
 
+        public string NoProjet {  get => noProjet; set => noProjet = value; }
+        public string Titre { get => titre; set => titre = value; }
+        public DateTime DateDebut { get => DateDebut; set => DateDebut = value; }
+        public String DateDebutString { get => dateDebut.ToString("d"); }
+        public string Description { get => description; set => description = value; }
+        public decimal Budjet { get => budjet; set => budjet = value; }
+        public int NbrEmploye { get => NbrEmploye; set => NbrEmploye = value; }
+        public decimal TotalSalaire { get => totalSalaire; set => totalSalaire = value; }
+        public int NoClient { get => noClient; set => noClient = value; }
+        public string Statut { get => statut; set => statut = value; }
+
+
         public override string? ToString()
         {
             return $"Projet no: {noProjet} \nTitre: {titre} \nDate de début: {dateDebut} \nDescription: {description}" +

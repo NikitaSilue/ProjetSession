@@ -22,7 +22,7 @@
             <TextBox x:Name="tbxAdresse" Header="Adresse"/>
             <TextBlock x:Name="errorAdresse" Foreground="Red" FontSize="12" />
 
-            <NumberBox x:Name="nbrTelephone" Header="Numéro de téléphone"/>
+            <TextBox x:Name="tbxTelephone" Header="Numéro de téléphone"/>
             <TextBlock x:Name="errorTelephone" Foreground="Red" FontSize="12" />
 
         </StackPanel>

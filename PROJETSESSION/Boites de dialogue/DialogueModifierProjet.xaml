@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="PROJETSESSION.Boites_de_dialogue.DialogueModifierProjet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PROJETSESSION.Boites_de_dialogue"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <Grid>
+
+        <ScrollViewer>
+
+
+            <StackPanel Spacing="12">
+
+                <TextBox x:Name="tbxTitre" Header="Nom"/>
+                <TextBlock x:Name="errorTitre" Foreground="Red" FontSize="12" />
+
+                <TextBox x:Name="tbxDescription" Header="Prénom"/>
+                <TextBlock x:Name="errorDescription" Foreground="Red" FontSize="12" />
+
+                <NumberBox x:Name="nbrBudjet" Header="Budjet"/>
+                <TextBlock x:Name="errorBudjet" Foreground="Red" FontSize="12" />
+
+                <NumberBox x:Name="nbrEmploye" Header="Nombre d'employé"/>
+                <TextBlock x:Name="errorEmploye" Foreground="Red" FontSize="12" />
+
+                <NumberBox x:Name="nbrSalaire" Header="Total des salaires"/>
+                <TextBlock x:Name="errorSalaire" Foreground="Red" FontSize="12" />
+
+                <ComboBox x:Name="cmbStatut" Header="Statut">
+                    <x:String>En cours</x:String>
+                    <x:String>Terminé</x:String>
+                </ComboBox>
+                <TextBlock x:Name="errorStatut" Foreground="Red" FontSize="12" />
+
+            </StackPanel>
+
+
+        </ScrollViewer>
+
+    </Grid>
+</ContentDialog>

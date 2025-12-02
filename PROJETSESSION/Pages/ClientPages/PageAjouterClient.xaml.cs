@@ -67,20 +67,20 @@ namespace PROJETSESSION.Pages.ClientPages
                 valide = false;
             }
             //NUMERO DE TÉLÉPHONE
-            if (double.IsNaN(nbrTelephone.Value))
+            string tel = tbxTelephone.Text.Trim();
+            if (string.IsNullOrWhiteSpace(tbxTelephone.Text))
             {
                 errorTelephone.Text = "Veuillez entrer un numéro de téléphone.";
                 valide = false;
             }
-            if (nbrTelephone.Value <= 0)
+            if (!Regex.IsMatch(tel, @"^\d+$"))
             {
-                errorTelephone.Text = "Le numéro de téléphone ne peut pas être vide.";
+                errorTelephone.Text = "Le numéro de téléphone doit contenir uniquement des chiffres.";
                 valide = false;
             }
-          
-            if (nbrTelephone.Value < 1000000000 || nbrTelephone.Value > 9999999999)
+            else if (tel.Length > 10)
             {
-                errorTelephone.Text = "Le numéro de téléphone doit contenir 10 chiffres.";
+                errorTelephone.Text = "Le numéro de téléphone ne doit pas dépasser 10 chiffres.";
                 valide = false;
             }
 
@@ -89,7 +89,7 @@ namespace PROJETSESSION.Pages.ClientPages
                 string nom = tbxNom.Text;
                 string email = tbxEmail.Text;
                 string adresse = tbxAdresse.Text;
-                int numeroTelephone = (int) nbrTelephone.Value;
+                string numeroTelephone =  tbxTelephone.Text;
 
                 if (SingletonClient.getInstance().ajouter(nom, adresse, numeroTelephone, email))
                     Frame.Navigate(typeof(PageAfficherClient));

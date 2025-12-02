@@ -48,7 +48,7 @@ namespace PROJETSESSION.Singletons
                     int identifiant = r.GetInt32("identifiant");
                     string nom = r.GetString("nom");
                     string adresse = r.GetString("adresse");
-                    int numeroTelephone = r.GetInt32("numeroTelephone");
+                    string numeroTelephone = r.GetString("numeroTelephone");
                     string email = r.GetString("email");
                     Clients unClient = new Clients(identifiant, nom, adresse, numeroTelephone, email);
                     listeClient.Add(unClient);
@@ -60,7 +60,7 @@ namespace PROJETSESSION.Singletons
             }
         }
 
-        public bool ajouter(string nom, string adresse, int numeroTelephone, string email)
+        public bool ajouter(string nom, string adresse, string numeroTelephone, string email)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace PROJETSESSION.Singletons
         }
 
         //modifie l’Email d’un client
-        public bool modifier(int identifiant, string nom, string adresse, int numeroTelephone ,string email)
+        public bool modifier(int identifiant, string nom, string adresse, string numeroTelephone ,string email)
         {
             try
             {

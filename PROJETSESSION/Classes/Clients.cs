@@ -11,11 +11,11 @@ namespace PROJETSESSION.Classes
         public int identifiant;
         public string nom;
         public string adresse;
-        public int numeroTelephone;
+        public string numeroTelephone;
         public string email;
 
 
-        public Clients(int identifiant, string nom, string adresse, int numeroTelephone, string email)
+        public Clients(int identifiant, string nom, string adresse, string numeroTelephone, string email)
         {
             this.identifiant = identifiant;
             this.nom = nom;
@@ -27,7 +27,7 @@ namespace PROJETSESSION.Classes
         public int Identifiant { get =>  identifiant; set => identifiant = value; }
         public string Nom { get => nom; set => nom = value; }
         public string Adresse { get => adresse; set => adresse = value; }
-        public int NumeroTelephone { get => numeroTelephone; set => numeroTelephone = value; }
+        public string NumeroTelephone { get => numeroTelephone; set => numeroTelephone = value; }
         public string Email { get => email; set => email = value; }
 
         public override string? ToString()

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="PROJETSESSION.Pages.ProjetPages.PageDetailsProjet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PROJETSESSION.Pages.ProjetPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:classes="using:PROJETSESSION.Classes">
+
+    <Grid Background="Beige">
+        <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="DETAILS DU PROJET" Foreground="Green"  FontSize="32" Margin="20"/>
+
+        <ScrollView>
+
+            <ListView x:Name="lvDetailsProjets">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="classes:Projets" >
+
+                        <StackPanel Spacing="10" Orientation="Horizontal">
+                            <TextBox x:Name="tbxBoProjet" Text="{Binding NoProjet}" Header="Numéro du projet" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxTitre" Text="{Binding Titre}" Header="Titre" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxDateDebut" Text="{Binding DateDebutString}" Header="Date de début" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxDesciption" Text="{Binding Description}" Header="Descriprition" Foreground="Green" FontWeight="Bold" Height="300" Width="150"/>
+                            <TextBox x:Name="tbxBudjet" Text="{Binding Budjet}" Header="Budjet" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxNbrEmploye" Text="{Binding NbrEmploye}" Header="Nombre d'employé sur le projet" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxTotalSalaire" Text="{Binding TotalSalaire}" Header="Total des salaires" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxClient" Text="{Binding NoClient}" Header="Numero du client" Foreground="Green" FontWeight="Bold" Width="150"/>
+                            <TextBox x:Name="tbxStatut" Text="{Binding Statut}" Header="Staut" Foreground="Green" FontWeight="Bold" Width="150"/>
+
+
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            
+            
+        </ScrollView>
+        
+
+    </Grid>
+</Page>

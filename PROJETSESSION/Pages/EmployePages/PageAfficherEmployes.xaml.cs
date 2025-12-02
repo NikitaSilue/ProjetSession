@@ -74,7 +74,6 @@ namespace PROJETSESSION.Pages.EmployePages
             Button button = sender as Button;
             Employes employe = button.DataContext as Employes;
             
-
             ///////////////////////////////////////////////////////////////////
             DialogueModificationEmploye dialogue = new DialogueModificationEmploye();
             dialogue.PrimaryButtonText = "Modifier";
@@ -84,8 +83,6 @@ namespace PROJETSESSION.Pages.EmployePages
             dialogue.setEmploye(employe);
 
             ContentDialogResult resultat = await dialogue.ShowAsync();
-
-            
 
         }
     }

@@ -31,7 +31,7 @@
                 <TextBlock x:Name="errorEmail" Foreground="Red" FontSize="12" TextAlignment="Center"/>
                 <!--NUMERO DE TELEPHONE-->
                 <TextBlock Text="Numéro de téléphone"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
-                <NumberBox x:Name="nbrTelephone" AcceptsExpression="True" Width="300" SpinButtonPlacementMode="Inline"/>
+                <TextBox x:Name="tbxTelephone"  Width="300"/>
                 <TextBlock x:Name="errorTelephone" Foreground="Red" FontSize="12" TextAlignment="Center"/>
 
 
