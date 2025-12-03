@@ -32,6 +32,7 @@ namespace PROJETSESSION.Boites_de_dialogue
         {
             this.projets = projets;
             tbxDescription.Text = projets.description;
+            tbxTitre.Text = projets.titre;
             nbrBudjet.Value = Convert.ToDouble(projets.budjet);
             nbrEmploye.Value = Convert.ToInt32(projets.nbEmploye);
             nbrSalaire.Value = Convert.ToDouble(projets.totalSalaire);

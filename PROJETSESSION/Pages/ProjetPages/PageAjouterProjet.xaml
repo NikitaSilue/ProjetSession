@@ -51,13 +51,13 @@
 
                 <!--CLIENT-->
                 <TextBlock Text="Sélection du client" FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
-                <ListView x:Name="lvClient" Height="auto" Width="300">
-                    <ListView.ItemTemplate>
+                <ComboBox x:Name="lvClient" Height="auto" Width="300" HorizontalAlignment="Center">
+                    <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="classes:Clients">
                             <TextBlock Text="{x:Bind Identifiant}"  />
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <TextBlock x:Name="errorClient" FontSize="12" TextAlignment="Center" Foreground="Red"/>
                 
                 

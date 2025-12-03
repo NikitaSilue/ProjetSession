@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,21 @@ namespace PROJETSESSION.Classes
             this.tauxHoraires = tauxHoraires;
             this.photo = photo;
             this.statut = statut;
-        }               
+        }
+
+        public Employes(MySqlDataReader r)
+        {
+            Matricule = r["matricule"].ToString();
+            Nom = r["nom"].ToString();
+            Prenom = r["prenom"].ToString();
+            Email = r["email"].ToString();
+            Adresse = r["adresse"].ToString();
+            DateNaissance = Convert.ToDateTime(r["dateNaissance"]);
+            TauxHoraires = Convert.ToDecimal(r["tauxHoraire"]);
+            Photo = r["photo"].ToString();
+            Statut = r["statut"].ToString();
+        }
+
 
         public string Matricule { get => matricule; set => matricule = value; }
         public string Nom { get => nom; set => nom = value; }

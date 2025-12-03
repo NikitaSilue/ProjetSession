@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PROJETSESSION.Classes
 {
-    internal class Projets
+    public class Projets
     {
 
         public string noProjet;
@@ -34,11 +34,11 @@ namespace PROJETSESSION.Classes
 
         public string NoProjet {  get => noProjet; set => noProjet = value; }
         public string Titre { get => titre; set => titre = value; }
-        public DateTime DateDebut { get => DateDebut; set => DateDebut = value; }
+        public DateTime DateDebut { get => dateDebut; set => dateDebut = value; }
         public String DateDebutString { get => dateDebut.ToString("d"); }
         public string Description { get => description; set => description = value; }
         public decimal Budjet { get => budjet; set => budjet = value; }
-        public int NbrEmploye { get => NbrEmploye; set => NbrEmploye = value; }
+        public int NbrEmploye { get => nbEmploye; set => NbrEmploye = value; }
         public decimal TotalSalaire { get => totalSalaire; set => totalSalaire = value; }
         public int NoClient { get => noClient; set => noClient = value; }
         public string Statut { get => statut; set => statut = value; }

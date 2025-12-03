@@ -5,9 +5,13 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
+using MySqlX.XDevAPI;
+using PROJETSESSION.Classes;
 using PROJETSESSION.Pages.ClientPages;
 using PROJETSESSION.Pages.EmployePages;
 using PROJETSESSION.Pages.ProjetPages;
+using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -62,6 +66,24 @@ namespace PROJETSESSION
                         break;
                 }
             }
+        }
+
+        private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            //var picker = new Windows.Storage.Pickers.FileSavePicker();
+            //var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            //WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+            //picker.SuggestedFileName = "test";
+            //picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+            ////crée le fichier
+            //Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+            //List<Projets> projets = SingletonProjet.getInstance.ToList();
+
+
+            //// La fonction ToString() de la classe Client retourne: nom;prenom;email
+            //if (monFichier != null)
+            //    await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+
         }
     }
 }

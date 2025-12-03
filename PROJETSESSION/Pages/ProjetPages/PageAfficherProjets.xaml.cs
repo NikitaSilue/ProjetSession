@@ -76,7 +76,7 @@ namespace PROJETSESSION.Pages.ProjetPages
             dialogue.XamlRoot = this.XamlRoot;
             dialogue.PrimaryButtonText = "Modifier";
             dialogue.CloseButtonText = "Annuler";
-            dialogue.Title = " Modification d ";
+            dialogue.Title = " Modification de projet ";
             dialogue.setProjets(projet);
 
             ContentDialogResult resultat = await dialogue.ShowAsync();
@@ -87,7 +87,7 @@ namespace PROJETSESSION.Pages.ProjetPages
             Projets projet = e.ClickedItem as Projets;
             if (projet != null)
             {
-                Frame.Navigate(typeof(PageDetailsProjet), projet.NoProjet);
+                Frame.Navigate(typeof(PageDetailsProjet), projet);
             }
         }
 

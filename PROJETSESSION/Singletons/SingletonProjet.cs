@@ -99,7 +99,7 @@ namespace PROJETSESSION.Singletons
             }
         }
 
-        public bool modifier( string titre, string description, string description1, decimal budjet, int nbEmploye, decimal totalSalaire, string statut)
+        public bool modifier( string noProjet, string titre, string description, decimal budjet, int nbEmploye, decimal totalSalaire, string statut)
         {
             try
             {
@@ -115,6 +115,7 @@ namespace PROJETSESSION.Singletons
                 commande.Parameters.AddWithValue("@nbEmploye", nbEmploye);
                 commande.Parameters.AddWithValue("@totalSalaire", totalSalaire);
                 commande.Parameters.AddWithValue("@statut", statut);
+                commande.Parameters.AddWithValue("@noProjet", noProjet);
                 con.Open();
                 int i = commande.ExecuteNonQuery();
 
@@ -148,6 +149,73 @@ namespace PROJETSESSION.Singletons
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        public List<Employes> GetEmployesLibres()
+        {
+            List<Employes> liste = new List<Employes>();
+
+            using MySqlConnection con = new MySqlConnection(connectionString);
+            using MySqlCommand commande = con.CreateCommand();
+
+            commande.CommandText =
+                "SELECT * FROM employes " +
+                "WHERE matricule NOT IN (" +
+                    "SELECT noEmploye FROM projetEmploye" +
+                ");";
+
+            con.Open();
+            using MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                liste.Add(new Employes(r));
+            }
+
+            return liste;
+        }
+
+
+        public bool AssignerEmployes(string noProjet, List<Employes> employes, decimal heuresTravaille)
+        {
+            try
+            {
+                using MySqlConnection con = new MySqlConnection(connectionString);
+                using MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+
+                foreach (var emp in employes)
+                { 
+                    decimal tauxHoraire = 0;
+                    commande.CommandText = "SELECT tauxHoraires FROM employes WHERE matricule=@matricule";
+                    commande.Parameters.AddWithValue("@matricule", emp.Matricule);
+                    
+                    
+                        commande.CommandText = @"INSERT INTO projetEmploye (noEmploye, noProjet, heuresTravaille, tauxHoraires) 
+                                          VALUES (@noEmploye, @noProjet, @heuresTravaille, @tauxHoraires)";
+                        commande.Parameters.AddWithValue("@noEmploye", emp.Matricule);
+                        commande.Parameters.AddWithValue("@noProjet", noProjet);
+                        commande.Parameters.AddWithValue("@heuresTravaille", heuresTravaille);
+                        commande.Parameters.AddWithValue("@tauxHoraires", tauxHoraire);
+                        con.Open();
+                        int i = commande.ExecuteNonQuery();
+                        using MySqlCommand commande2 = new MySqlCommand();
+                        commande2.Connection = con;
+                        commande2.CommandText = "select LAST_INSERT_ID() ";
+                        var res = commande2.ExecuteScalar();
+                        getAllProjets();
+
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
 
 
     }

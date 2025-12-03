@@ -24,7 +24,8 @@
 
         <MenuBar Grid.Row="0" HorizontalAlignment="Left">
 
-            <MenuBarItem Title="Choisir un fichier"  >
+            <MenuBarItem Title="Exporter le fichier" >
+                <MenuFlyoutItem Text="Projet.csv" Tag="projets" Click="MenuFlyoutItem_Click"/>
             </MenuBarItem>
         </MenuBar>
 

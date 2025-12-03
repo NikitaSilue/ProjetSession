@@ -10,36 +10,93 @@
     xmlns:classes="using:PROJETSESSION.Classes">
 
     <Grid Background="Beige">
-        <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="DETAILS DU PROJET" Foreground="Green"  FontSize="32" Margin="20"/>
+
+       
+
+        
 
         <ScrollView>
 
-            <ListView x:Name="lvDetailsProjets">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="classes:Projets" >
+            <StackPanel Spacing="30">
+                <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="DETAILS DU PROJET" Foreground="Green"  FontSize="32" Margin="20"/>
 
-                        <StackPanel Spacing="10" Orientation="Horizontal">
-                            <TextBox x:Name="tbxBoProjet" Text="{Binding NoProjet}" Header="Numéro du projet" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxTitre" Text="{Binding Titre}" Header="Titre" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxDateDebut" Text="{Binding DateDebutString}" Header="Date de début" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxDesciption" Text="{Binding Description}" Header="Descriprition" Foreground="Green" FontWeight="Bold" Height="300" Width="150"/>
-                            <TextBox x:Name="tbxBudjet" Text="{Binding Budjet}" Header="Budjet" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxNbrEmploye" Text="{Binding NbrEmploye}" Header="Nombre d'employé sur le projet" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxTotalSalaire" Text="{Binding TotalSalaire}" Header="Total des salaires" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxClient" Text="{Binding NoClient}" Header="Numero du client" Foreground="Green" FontWeight="Bold" Width="150"/>
-                            <TextBox x:Name="tbxStatut" Text="{Binding Statut}" Header="Staut" Foreground="Green" FontWeight="Bold" Width="150"/>
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <TextBlock Text="Numéro Projet"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxNoProjet" Text="{Binding NoProjet}"   Width="300"/>
+
+                    <TextBlock Text="Titre"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxTitre" Text="{Binding Titre}"  Width="300"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <TextBlock Text="Date de début"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxDateDebut" Text="{Binding DateDebutString}"    Width="300"/>
+
+                    <TextBlock Text="Budjet"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxBudjet" Text="{Binding Budjet}"  Width="300"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <TextBlock Text="Description"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxDesciption" Text="{Binding Description}"   Width="400"/>
+                </StackPanel>
 
 
-                        </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <TextBlock Text="Nombre d'employé sur le projet"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxNbrEmploye" Text="{Binding NbrEmploye}"   Width="300"/>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            
-            
-            
+                    <TextBlock Text="Total des salaires"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxTotalSalaire" Text="{Binding TotalSalaire}"  Width="300"/>
+                </StackPanel>
+
+
+                <StackPanel  Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <TextBlock Text="Numéro du client"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxClient" Text="{Binding NoClient}"    Width="300"/>
+
+                    <TextBlock Text="Statut"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
+                    <TextBox x:Name="tbxStatut" Text="{Binding Statut}"  Width="300"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Spacing="10" >
+                    <TextBlock Text="Liste des employés libre pour ce projet"  FontWeight="Bold"  Foreground="Green" TextAlignment="Center"/>
+
+                    <ListView x:Name="lvListeEmploye" Width="300" Margin="0,5,0,10" HorizontalAlignment="Center">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="classes:Employes">
+                                <CheckBox x:Name="cbEmploye" Content="{x:Bind Nom}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button  x:Name="btnAssigner" Click="btnAssigner_Click" HorizontalAlignment="Center">Assigner les employés</Button>
+
+
+                    <TextBlock Text="Liste des employés pour ce projet" FontWeight="Bold" Foreground="Green" TextAlignment="Center"/>
+                    <ListView x:Name="lvListeAssigne">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="classes:projetEmploye">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBox x:Name="tbxNoEmploye" Text="{Binding NoEmploye}" Width="100" IsReadOnly="True"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+
+                    <Button x:Name="btnRetour" Click="btnRetour_Click"  HorizontalAlignment="Center" Margin="20" Foreground="Green" Width="150"  >Retour</Button>
+
+
+
+                </StackPanel>
+
+            </StackPanel>
+
         </ScrollView>
-        
 
+
+        
     </Grid>
 </Page>
