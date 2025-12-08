@@ -31,6 +31,8 @@ namespace PROJETSESSION.Singletons
         }
         public ObservableCollection<Projets> Liste { get => listeProjets; }
 
+        public List<Projets> ListeCSV { get => listeProjets.ToList<Projets>(); }
+
         public void getAllProjets()
         {
             listeProjets.Clear(); //permet de vider la liste avant de la recharger
@@ -38,7 +40,8 @@ namespace PROJETSESSION.Singletons
             {
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = con.CreateCommand();
-                commande.CommandText = "Select * from projets";
+                commande.CommandText =  "SELECT p.noProjet, p.titre, p.dateDebut, p.description, p.budjet, p.nbEmploye, p.totalSalaire, p.noClient, c.nom, p.statut " +
+                                        "FROM projets p JOIN clients c ON p.noClient = c.identifiant;";
                 con.Open();
                 using MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
@@ -51,9 +54,10 @@ namespace PROJETSESSION.Singletons
                     int nbEmploye = r.GetInt32("nbEmploye");
                     decimal totalSalaire = r.GetDecimal("totalSalaire");
                     int noClient = r.GetInt32("noClient");
+                    string nomClient = r.GetString("nom");
                     string statut = r.GetString("statut");
 
-                    Projets unProjet = new Projets(noProjet, titre, dateDebut, description, budjet, nbEmploye, totalSalaire, noClient, statut);
+                    Projets unProjet = new Projets(noProjet, titre, dateDebut, description, budjet, nbEmploye, totalSalaire, noClient, nomClient, statut);
                     listeProjets.Add(unProjet);
                 }
             }

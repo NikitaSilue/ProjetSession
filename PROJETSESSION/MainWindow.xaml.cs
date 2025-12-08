@@ -20,6 +20,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -70,20 +71,23 @@ namespace PROJETSESSION
 
         private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            //var picker = new Windows.Storage.Pickers.FileSavePicker();
-            //var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            //WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
-            //picker.SuggestedFileName = "test";
-            //picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
-            ////crée le fichier
-            //Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
-            //List<Projets> projets = SingletonProjet.getInstance.ToList();
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+            picker.SuggestedFileName = "test";
+            picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            if (monFichier == null) return;
+
+            List<Projets> lignes = SingletonProjet.getInstance().ListeCSV;
 
 
-            //// La fonction ToString() de la classe Client retourne: nom;prenom;email
-            //if (monFichier != null)
-            //    await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
 
+          
+            if (monFichier != null)
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, lignes.ConvertAll(x => x.stringCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
         }
     }
 }
