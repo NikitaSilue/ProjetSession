@@ -35,16 +35,25 @@
                  x:Name="navView" 
                  ItemInvoked="navView_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Gestion des employés" x:Name="iEmploye" Icon="List"  Tag="afficherEmploye"/>
+                <NavigationViewItem Content="Gestion des employés" x:Name="iEmploye" Icon="Contact"  Tag="afficherEmploye"/>
                 <NavigationViewItem Content="Ajouter des employés" x:Name="iEmployeAjout" Icon="Add"  Tag="ajouterEmploye"/>
                 <NavigationViewItemSeparator />
-                <NavigationViewItem Content="Gestions des clients" x:Name="iClients" Icon="List" Tag="afficherClients"/>
+                <NavigationViewItem Content="Gestions des clients" x:Name="iClients" Icon="Contact" Tag="afficherClients"/>
                 <NavigationViewItem Content="Ajouter des clients" x:Name="iClientsAjout" Icon="Add" Tag="ajouterClients"/>
                 <NavigationViewItemSeparator />
                 <NavigationViewItem Content="Gestions des projets" x:Name="iProjets" Icon="List" Tag="afficherProjets"/>
                 <NavigationViewItem Content="Ajouter des projets" x:Name="iProjetsAjout" Icon="Add" Tag="AjouterProjets"/>
             </NavigationView.MenuItems>
 
+
+
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Se connecter" x:Name="iConnexion" Icon="Contact" Tag="connexion" Visibility="Visible"/>
+                <NavigationViewItem Content="Se deconnecter" x:Name="iDeconnexion" Icon="Switch" Tag="deconnexion" Visibility="Visible"/>
+            </NavigationView.FooterMenuItems>
+
+            
             <Frame x:Name="mainFrame"/>
         </NavigationView>
 

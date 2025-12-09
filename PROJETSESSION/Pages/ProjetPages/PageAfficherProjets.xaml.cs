@@ -32,7 +32,35 @@ namespace PROJETSESSION.Pages.ProjetPages
             InitializeComponent();
             lvListeProjet.ItemsSource = SingletonProjet.getInstance().Liste;
             SingletonProjet.getInstance().getAllProjets();
+
+
+            lvListeProjet.ContainerContentChanging += LvListeEmploye_BouttonsVisible;
         }
+
+        private void LvListeEmploye_BouttonsVisible(ListViewBase sender, ContainerContentChangingEventArgs args)
+        {
+            if (args.ItemContainer is GridViewItem item)
+            {
+                // IMPORTANT : cast en FrameworkElement
+                var root = item.ContentTemplateRoot as FrameworkElement;
+                if (root == null)
+                    return;
+
+                var spBoutons = root.FindName("spBoutons") as StackPanel;
+                var btnModifier = root.FindName("btnModifier") as Button;
+                var btnSupprimer = root.FindName("btnSupprimer") as Button;
+
+                bool estConnecte = SingletonAdmin.getInstance().EstConnecte;
+
+                if (spBoutons != null)
+                    spBoutons.Visibility = estConnecte ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+        }
+
+
+
+
 
         private async void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {

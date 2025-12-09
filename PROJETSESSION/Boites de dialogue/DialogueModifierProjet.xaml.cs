@@ -37,6 +37,7 @@ namespace PROJETSESSION.Boites_de_dialogue
             nbrEmploye.Value = Convert.ToInt32(projets.nbEmploye);
             nbrSalaire.Value = Convert.ToDouble(projets.totalSalaire);
             cmbStatut.SelectedItem = projets.statut;
+
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

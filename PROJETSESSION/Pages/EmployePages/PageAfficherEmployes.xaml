@@ -37,7 +37,7 @@
                         <TextBlock Text="{x:Bind TauxHoraires}" TextAlignment="Center"/>
                         
                         <TextBlock Text="{x:Bind Statut}" Foreground="Green" TextAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel x:Name="spBoutons" Orientation="Horizontal">
                              <Button x:Name="btnSupprimer" Click="btnSupprimer_Click" >
                              <StackPanel Orientation="Horizontal" Spacing="20">
                                  <SymbolIcon Symbol="Delete"/>

@@ -7,8 +7,10 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
 using MySqlX.XDevAPI;
+using PROJETSESSION.Boites_de_dialogue;
 using PROJETSESSION.Classes;
 using PROJETSESSION.Pages.ClientPages;
+using PROJETSESSION.Pages.Connexion;
 using PROJETSESSION.Pages.EmployePages;
 using PROJETSESSION.Pages.ProjetPages;
 using PROJETSESSION.Singletons;
@@ -20,6 +22,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Protection.PlayReady;
 using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -35,11 +38,12 @@ namespace PROJETSESSION
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(typeof(PageAfficherProjets));
-
+            VerifierCompteAdmin();
+            MettreAJourConnexion();
+            //mainFrame.Navigate(typeof(PageAfficherProjets));
         }
 
-        private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private async void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.InvokedItemContainer is NavigationViewItem item)
             {
@@ -49,25 +53,105 @@ namespace PROJETSESSION
                         mainFrame.Navigate(typeof(AfficherEmployes));
                         break;
                     case "iEmployeAjout":
-                        mainFrame.Navigate(typeof(AjouterEmploye));
+                        if (SingletonAdmin.getInstance().EstConnecte)
+                        {
+                            mainFrame.Navigate(typeof(AjouterEmploye));
+                        }
+                        else
+                        {
+                            await connexionRequis();
+                        }
+
                         break;
+                    
+
+
+
+
+
                     case "iClients":
                         mainFrame.Navigate(typeof(PageAfficherClient));
                         break;
                     case "iClientsAjout":
-                        mainFrame.Navigate(typeof(PageAjouterClient));
+                        if (SingletonAdmin.getInstance().EstConnecte)
+                        {
+                            mainFrame.Navigate(typeof(PageAjouterClient));
+                        }
+                        else
+                        {
+                            await connexionRequis();
+                        }
+
                         break;
+                    
+
+
                     case "iProjets":
                         mainFrame.Navigate(typeof(PageAfficherProjets));
                         break;
+
                     case "iProjetsAjout":
-                        mainFrame.Navigate(typeof(PageAjouterProjet));
+                        if (SingletonAdmin.getInstance().EstConnecte)
+                        {
+                            mainFrame.Navigate(typeof(PageAjouterProjet));
+                        }
+                        else
+                        {
+                            await connexionRequis();
+                        }
+
                         break;
+
+                   
+                    case "iConnexion":
+                        mainFrame.Navigate(typeof(BlankPage1), this);
+                        break;
+
+                    case "iDeconnexion":
+                        SingletonAdmin.getInstance().Deconnecter();
+                        MettreAJourConnexion();
+                        mainFrame.Navigate(typeof(PageAfficherProjets));
+                        break;
+
+
                     default:
                         break;
                 }
             }
         }
+
+        private void VerifierCompteAdmin()
+        {
+            if (!SingletonAdmin.getInstance().CompteAdminExiste())
+            {
+                mainFrame.Navigate(typeof(PageCreationAdmin));
+            }
+            else
+            {
+                mainFrame.Navigate(typeof(PageAfficherProjets));
+            }
+        }
+
+        public void MettreAJourConnexion()
+        {
+            if (SingletonAdmin.getInstance().EstConnecte)
+            {
+                iConnexion.Visibility = Visibility.Collapsed;
+                iDeconnexion.Visibility = Visibility.Visible;
+                iEmployeAjout.Visibility = Visibility.Collapsed;
+                iClientsAjout.Visibility = Visibility.Collapsed;
+                iProjetsAjout.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                iConnexion.Visibility = Visibility.Visible;
+                iDeconnexion.Visibility = Visibility.Collapsed;
+                iEmployeAjout.Visibility = Visibility.Visible;
+                iClientsAjout.Visibility = Visibility.Visible;
+                iProjetsAjout.Visibility = Visibility.Visible;
+            }
+        }
+
 
         private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
@@ -88,6 +172,28 @@ namespace PROJETSESSION
           
             if (monFichier != null)
                 await Windows.Storage.FileIO.WriteLinesAsync(monFichier, lignes.ConvertAll(x => x.stringCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+        }
+
+
+
+
+        private async System.Threading.Tasks.Task connexionRequis()
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Connexion requise",
+                Content = "Seul un administrateur peut éffectuer cette action",
+                PrimaryButtonText = "Se connecter",
+                CloseButtonText = "Annuler",
+                XamlRoot = this.Content.XamlRoot
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                mainFrame.Navigate(typeof(BlankPage1));
+            }
         }
     }
 }

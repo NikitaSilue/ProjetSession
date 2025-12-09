@@ -19,6 +19,7 @@
     <None Remove="Pages\ClientPages\PageAfficherClient.xaml" />
     <None Remove="Pages\ClientPages\PageAjouterClient.xaml" />
     <None Remove="Pages\ClientPages\PageModifierClient.xaml" />
+    <None Remove="Pages\Connexion\PageCreationAdmin.xaml" />
     <None Remove="Pages\ProjetPages\PageAfficherProjets.xaml" />
     <None Remove="Pages\ProjetPages\PageAjouterProjet.xaml" />
     <None Remove="Pages\ProjetPages\PageDetailsProjet.xaml" />
@@ -50,6 +51,11 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7175" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="MySql.Data" Version="9.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Connexion\PageCreationAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Boites de dialogue\DialogueModifierProjet.xaml">
@@ -108,6 +114,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Boites de dialogue\DialogueModificationEmploye.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Connexion\PageConnexionCompte.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

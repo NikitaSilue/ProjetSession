@@ -31,6 +31,7 @@
                 <NumberBox x:Name="nbrSalaire" Header="Total des salaires"/>
                 <TextBlock x:Name="errorSalaire" Foreground="Red" FontSize="12" />
 
+
                 <ComboBox x:Name="cmbStatut" Header="Statut">
                     <x:String>En cours</x:String>
                     <x:String>Terminé</x:String>

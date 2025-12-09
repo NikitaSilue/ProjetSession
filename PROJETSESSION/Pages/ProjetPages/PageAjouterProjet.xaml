@@ -54,7 +54,7 @@
                 <ComboBox x:Name="lvClient" Height="auto" Width="300" HorizontalAlignment="Center">
                     <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="classes:Clients">
-                            <TextBlock Text="{x:Bind Identifiant}"  />
+                            <TextBlock Text="{x:Bind Nom}"  />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>

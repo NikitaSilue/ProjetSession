@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,11 +19,13 @@ using Windows.Foundation.Collections;
 
 namespace PROJETSESSION.Boites_de_dialogue
 {
-    public sealed partial class DialogueCompteAdmin : UserControl
+    public sealed partial class DialogueCompteAdmin : ContentDialog
     {
         public DialogueCompteAdmin()
         {
             InitializeComponent();
         }
+
+
     }
 }

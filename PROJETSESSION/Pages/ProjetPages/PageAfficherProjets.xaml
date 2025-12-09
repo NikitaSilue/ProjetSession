@@ -32,8 +32,8 @@
                         <TextBlock Text="{x:Bind DateDebutString, Mode=OneWay}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind Budjet}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind Statut}" Foreground="Green" TextAlignment="Center"/>
-                        
-                        <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0,5,0,0">
+
+                        <StackPanel x:Name="spBoutons" Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0,5,0,0">
                             <Button x:Name="btnSupprimer" Click="btnSupprimer_Click" >
                                 <StackPanel Orientation="Horizontal" Spacing="20">
                                     <SymbolIcon Symbol="Delete"/>
