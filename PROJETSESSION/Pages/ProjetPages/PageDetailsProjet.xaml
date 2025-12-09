@@ -10,7 +10,7 @@
     xmlns:classes="using:PROJETSESSION.Classes">
 
     <Grid Background="Beige">
-
+ 
        
 
         
@@ -60,17 +60,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Spacing="10" >
-                    <!--<TextBlock Text="Liste des employés libre pour ce projet"  FontWeight="Bold"  Foreground="Green" TextAlignment="Center"/>
-
-                    <ListView x:Name="lvListeEmploye" Width="300" Margin="0,5,0,10" HorizontalAlignment="Center">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="classes:Employes">
-                                <CheckBox x:Name="cbEmploye" Content="{x:Bind Nom}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-                    <Button  x:Name="btnAssigner" Click="btnAssigner_Click" HorizontalAlignment="Center">Assigner les employés</Button>
+                   
 
 
                     <TextBlock Text="Liste des employés pour ce projet" FontWeight="Bold" Foreground="Green" TextAlignment="Center"/>
@@ -82,7 +72,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>-->
+                    </ListView>
 
 
 

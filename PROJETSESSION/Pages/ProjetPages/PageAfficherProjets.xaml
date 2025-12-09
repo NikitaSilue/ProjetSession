@@ -20,13 +20,14 @@
 
 
         <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="LISTE DE TOUS LES PROJETS" Foreground="Green"  FontSize="32" Margin="20"/>
+        
         <GridView x:Name="lvListeProjet" Grid.Row="1"  IsItemClickEnabled="True" ItemClick="lvListeProjet_ItemClick" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Projets">
                     <StackPanel  Margin="20">
 
-
-                        <TextBlock x:Name="tbxCode" Text="{x:Bind NoProjet, Mode=OneWay}" Foreground="Green" TextAlignment="Center" Margin="5" />
+                        
+                            <TextBlock x:Name="tbxCode" Text="{x:Bind NoProjet, Mode=OneWay}" Foreground="Green" TextAlignment="Center" Margin="5" />
                         <TextBlock Text="{x:Bind Titre}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind NoClient}" TextAlignment="Center"/>
                         <TextBlock Text="{x:Bind DateDebutString, Mode=OneWay}" TextAlignment="Center"/>
@@ -45,12 +46,12 @@
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-
+            
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-
+        
 
 
     </Grid>

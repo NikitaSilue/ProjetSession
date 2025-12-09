@@ -51,7 +51,7 @@ namespace PROJETSESSION.Pages.ProjetPages
                 tbxStatut.Text = Convert.ToString(projet.Statut);
 
                 
-                lvListeEmploye.ItemsSource = SingletonProjet.getInstance().GetEmployesLibres();
+               
                 
             }
         }
@@ -63,15 +63,6 @@ namespace PROJETSESSION.Pages.ProjetPages
 
         }
 
-        private void btnAssigner_Click(object sender, RoutedEventArgs e)
-        {
-            Projets projet = lvListeEmploye.SelectedItem as Projets;
-
-            // Récupérer l'employé correspondant au bouton cliqué
-            var button = sender as Button;
-            Employes employe = button.DataContext as Employes;
-
-            
-        }
+        
     }
 }

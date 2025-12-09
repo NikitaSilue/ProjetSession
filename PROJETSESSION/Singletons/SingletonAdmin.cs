@@ -1,5 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using PROJETSESSION.Classes;
+using PROJETSESSION.Pages.Connexion;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -58,12 +60,7 @@ namespace PROJETSESSION.Singletons
             return false;
         }
 
-        public void deconnection()
-        {
-            connecte = false;
-        }
-
-      
+        
         private bool VerifierMotDePasse(string motDePasse, string hash)
         {
             string hashInput = CrypterMotDePasse(motDePasse);
@@ -84,48 +81,6 @@ namespace PROJETSESSION.Singletons
                 return builder.ToString();
             }
         }
-
-
-        public void HasherTousLesMdpExistants()
-        {
-            using MySqlConnection con = new MySqlConnection(connectionString);
-            con.Open();
-
-            // Lire tous les comptes
-            MySqlCommand selectCmd = new MySqlCommand("SELECT nomUtilisateur, motDePasse FROM admin", con);
-            MySqlDataReader reader = selectCmd.ExecuteReader();
-
-            var updates = new List<(string nomUtilisateur, string hash)>();
-            while (reader.Read())
-            {
-                string nom = reader.GetString(0);
-                string mdpClair = reader.GetString(1);
-                string mdpHash = CrypterMotDePasse(mdpClair);
-                updates.Add((nom, mdpHash));
-            }
-            reader.Close();
-
-            // Mettre à jour la BD
-            foreach (var u in updates)
-            {
-                MySqlCommand updateCmd = new MySqlCommand(
-                    "UPDATE admin SET motDePasse = @motDePasse WHERE nomUtilisateur = @nomUtilisateur", con);
-                updateCmd.Parameters.AddWithValue("@motDePasse", u.hash);
-                updateCmd.Parameters.AddWithValue("@nomUtilisateur", u.nomUtilisateur);
-                updateCmd.ExecuteNonQuery();
-            }
-
-        }
-
-
-
-
-
-
-
-
-
-
 
 
         public bool CompteAdminExiste()
@@ -221,7 +176,6 @@ namespace PROJETSESSION.Singletons
         public void Deconnecter()
         {
             connecte = false;
-            
         }
 
 

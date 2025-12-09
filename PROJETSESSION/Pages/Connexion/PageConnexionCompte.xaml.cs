@@ -78,7 +78,7 @@ namespace PROJETSESSION.Pages.Connexion
 
                 if (resultat == "")
                 {
-                    
+                    MainWindow.mainWindow.MettreAJourConnexion();
                     Frame.Navigate(typeof(PageAfficherProjets));
                     Frame.Navigate(typeof(PageAfficherProjets));
                 }

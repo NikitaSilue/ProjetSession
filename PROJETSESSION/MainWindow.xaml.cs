@@ -16,6 +16,7 @@ using PROJETSESSION.Pages.ProjetPages;
 using PROJETSESSION.Singletons;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -35,12 +36,15 @@ namespace PROJETSESSION
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        public static MainWindow mainWindow;
+
         public MainWindow()
         {
             InitializeComponent();
+            mainWindow = this;
             VerifierCompteAdmin();
             MettreAJourConnexion();
-            //mainFrame.Navigate(typeof(PageAfficherProjets));
+          
         }
 
         private async void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -64,11 +68,6 @@ namespace PROJETSESSION
 
                         break;
                     
-
-
-
-
-
                     case "iClients":
                         mainFrame.Navigate(typeof(PageAfficherClient));
                         break;
@@ -83,9 +82,6 @@ namespace PROJETSESSION
                         }
 
                         break;
-                    
-
-
                     case "iProjets":
                         mainFrame.Navigate(typeof(PageAfficherProjets));
                         break;
@@ -108,8 +104,8 @@ namespace PROJETSESSION
                         break;
 
                     case "iDeconnexion":
-                        SingletonAdmin.getInstance().Deconnecter();
-                        MettreAJourConnexion();
+                        confirmationDeconnexion();
+                        
                         mainFrame.Navigate(typeof(PageAfficherProjets));
                         break;
 
@@ -138,17 +134,17 @@ namespace PROJETSESSION
             {
                 iConnexion.Visibility = Visibility.Collapsed;
                 iDeconnexion.Visibility = Visibility.Visible;
-                iEmployeAjout.Visibility = Visibility.Collapsed;
-                iClientsAjout.Visibility = Visibility.Collapsed;
-                iProjetsAjout.Visibility = Visibility.Collapsed;
+                iEmployeAjout.Visibility = Visibility.Visible;
+                iClientsAjout.Visibility = Visibility.Visible;
+                iProjetsAjout.Visibility = Visibility.Visible;
             }
             else
             {
                 iConnexion.Visibility = Visibility.Visible;
                 iDeconnexion.Visibility = Visibility.Collapsed;
-                iEmployeAjout.Visibility = Visibility.Visible;
-                iClientsAjout.Visibility = Visibility.Visible;
-                iProjetsAjout.Visibility = Visibility.Visible;
+                iEmployeAjout.Visibility = Visibility.Collapsed;
+                iClientsAjout.Visibility = Visibility.Collapsed;
+                iProjetsAjout.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -193,6 +189,37 @@ namespace PROJETSESSION
             if (result == ContentDialogResult.Primary)
             {
                 mainFrame.Navigate(typeof(BlankPage1));
+            }
+        }
+
+
+
+        private async System.Threading.Tasks.Task confirmationDeconnexion()
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.Content.XamlRoot;
+            dialog.Title = "Déconnexion";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = "Êtes-vous sûr de vouloir vous déconnecter?";
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                SingletonAdmin.getInstance().Deconnecter();
+                MettreAJourConnexion();
+                mainFrame.Navigate(typeof(PageAfficherProjets));
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Debug.WriteLine("Bouton Non sélectionné");
+            }
+            else
+            {
+                Debug.WriteLine("Annulé");
             }
         }
     }

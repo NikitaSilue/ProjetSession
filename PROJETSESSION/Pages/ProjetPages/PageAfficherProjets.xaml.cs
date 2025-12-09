@@ -33,15 +33,14 @@ namespace PROJETSESSION.Pages.ProjetPages
             lvListeProjet.ItemsSource = SingletonProjet.getInstance().Liste;
             SingletonProjet.getInstance().getAllProjets();
 
-
             lvListeProjet.ContainerContentChanging += LvListeEmploye_BouttonsVisible;
+            MainWindow.mainWindow.MettreAJourConnexion();
         }
 
         private void LvListeEmploye_BouttonsVisible(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
             if (args.ItemContainer is GridViewItem item)
             {
-                // IMPORTANT : cast en FrameworkElement
                 var root = item.ContentTemplateRoot as FrameworkElement;
                 if (root == null)
                     return;
