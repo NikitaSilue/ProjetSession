@@ -27,7 +27,7 @@
             <GridView x:Name="lvListeClients" Grid.Row="1">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="classes:Clients">
-                    <StackPanel   Margin="20" Spacing="8">
+                    <StackPanel   Margin="20" Spacing="8" >
 
                             <TextBlock x:Name="tbxIdentifiant" Text="{x:Bind identifiant, Mode=OneWay}" FontWeight="Bold" Foreground="Green" TextAlignment="Center" />
                             <TextBlock Text="{x:Bind nom}" TextAlignment="Center"/>
@@ -35,7 +35,7 @@
                             <TextBlock Text="{x:Bind numeroTelephone}" TextAlignment="Center"/>
                             <TextBlock Text="{x:Bind email}" TextAlignment="Center"/>
 
-                        <StackPanel x:Name="spBoutons" Orientation="Vertical" Spacing="10">
+                        <StackPanel x:Name="spBoutons" HorizontalAlignment="Center" Orientation="Vertical" Spacing="10">
 
                                 <Button x:Name="btnSupprimer" Click="btnSupprimer_Click">
                                     <StackPanel  Orientation="Horizontal" Spacing="5">
@@ -46,7 +46,7 @@
                                 <Button x:Name="btnModifier" Click="btnModifier_Click">
                                     <StackPanel Orientation="Horizontal" Spacing="5">
                                         <SymbolIcon Symbol="Edit"/>
-                                        <TextBlock Text="Modifier"/>
+                                        <TextBlock Text="   Modifier"/>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>

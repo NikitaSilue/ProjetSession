@@ -49,10 +49,7 @@ namespace PROJETSESSION.Pages.ProjetPages
                 tbxTotalSalaire.Text = Convert.ToString(projet.TotalSalaire);
                 tbxClient.Text = Convert.ToString(projet.NoClient);
                 tbxStatut.Text = Convert.ToString(projet.Statut);
-
-                
-               
-                
+                lvListeAssigne.ItemsSource = SingletonProjet.getInstance().ChargerEmployesProjet(projet.NoProjet);
             }
         }
 

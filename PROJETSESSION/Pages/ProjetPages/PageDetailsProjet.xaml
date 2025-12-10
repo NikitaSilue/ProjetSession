@@ -38,7 +38,7 @@
 
                 <StackPanel  Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
                     <TextBlock Text="Description"  FontWeight="Bold" TextAlignment="Center" Foreground="Green"/>
-                    <TextBox x:Name="tbxDesciption" Text="{Binding Description}"   Width="400"/>
+                    <TextBox x:Name="tbxDesciption" Text="{Binding Description}"  Width="400"/>
                 </StackPanel>
 
 
@@ -67,8 +67,19 @@
                     <ListView x:Name="lvListeAssigne">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="classes:projetEmploye">
-                                <StackPanel Orientation="Horizontal" Spacing="10">
-                                    <TextBox x:Name="tbxNoEmploye" Text="{Binding NoEmploye}" Width="100" IsReadOnly="True"/>
+                                <StackPanel Orientation="Horizontal" Spacing="20" HorizontalAlignment="Center">
+
+                                    <TextBlock Text="{x:Bind NoEmploye}" Width="120"/>
+
+                                    <!-- Taux horaire -->
+                                    <TextBlock Text="{x:Bind TauxHoraires}" Width="120"/>
+
+                                    <!-- Heures travaillées -->
+                                    <TextBlock Text="{x:Bind HeuresTravaille}" Width="120"/>
+
+                                    <!-- Salaire (calculé automatiquement dans la classe) -->
+                                    <TextBlock Text="{x:Bind salaire}" Width="120" Foreground="Green"/>
+
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

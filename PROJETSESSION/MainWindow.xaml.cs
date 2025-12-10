@@ -151,23 +151,28 @@ namespace PROJETSESSION
 
         private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FileSavePicker();
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
-            picker.SuggestedFileName = "test";
-            picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
-            //crée le fichier
-            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+            if (SingletonAdmin.getInstance().EstConnecte)
+            {
+                var picker = new Windows.Storage.Pickers.FileSavePicker();
+                var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+                picker.SuggestedFileName = "test";
+                picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+                //crée le fichier
+                Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
 
-            if (monFichier == null) return;
+                if (monFichier == null) return;
 
-            List<Projets> lignes = SingletonProjet.getInstance().ListeCSV;
+                List<Projets> lignes = SingletonProjet.getInstance().ListeCSV;
 
-
-
-          
-            if (monFichier != null)
-                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, lignes.ConvertAll(x => x.stringCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+                if (monFichier != null)
+                    await Windows.Storage.FileIO.WriteLinesAsync(monFichier, lignes.ConvertAll(x => x.stringCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            }
+            else
+            {
+                await connexionRequis();
+            }
+            
         }
 
 

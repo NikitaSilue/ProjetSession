@@ -21,6 +21,9 @@ namespace PROJETSESSION.Classes
             this.heuresTravaille = heuresTravaille;
             this.tauxHoraires = tauxHoraires;
         }
+        public projetEmploye()
+        {
+        }
 
         public string NoProjet { get => noProjet; set => noProjet = value; }
         public string NoEmploye {  get => noEmploye; set => noEmploye = value; }

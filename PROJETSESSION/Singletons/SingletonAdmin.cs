@@ -137,7 +137,7 @@ namespace PROJETSESSION.Singletons
                 }
                 else
                 {
-                    return "Nom d'utilisateur ou mot de passe incorrect.";
+                    return "Nom d'utilisateur ou mot de passe incorrect. Veuillez réesseyer svp.";
                 }
             }
             catch (MySqlException ex)

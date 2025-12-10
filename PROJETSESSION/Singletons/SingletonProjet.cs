@@ -1,8 +1,10 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.WindowsAppSDK.Runtime.Packages;
+using MySql.Data.MySqlClient;
 using PROJETSESSION.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -51,8 +53,9 @@ namespace PROJETSESSION.Singletons
                     DateTime dateDebut = r.GetDateTime("dateDebut");
                     string description = r.GetString("description");
                     decimal budjet = r.GetDecimal("budjet");
-                    int nbEmploye = r.GetInt32("nbEmploye");
-                    decimal totalSalaire = r.GetDecimal("totalSalaire");
+                    int nbEmploye = r.GetInt32("nbEmploye"); 
+                    int index = r.GetOrdinal("totalSalaire");
+                    decimal totalSalaire = r.IsDBNull(index) ? 0 : r.GetDecimal(index);
                     int noClient = r.GetInt32("noClient");
                     string nomClient = r.GetString("nom");
                     string statut = r.GetString("statut");
@@ -218,6 +221,41 @@ namespace PROJETSESSION.Singletons
                 return false;
             }
         }
+
+
+        public List<projetEmploye> ChargerEmployesProjet(string noProjet)
+        {
+            List<projetEmploye> liste = new();
+
+            using (MySqlConnection con = new MySqlConnection(SingletonProjet.getInstance().connectionString))
+            {
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("employesDuProjet", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@p_noProjet", noProjet);
+
+                    using (MySqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            liste.Add(new projetEmploye
+                            {
+                                noEmploye = r.GetString("noEmploye"),
+                                noProjet = r.GetString("noProjet"),
+                                tauxHoraires = (decimal)r.GetDecimal("tauxHoraires"),
+                                heuresTravaille = (decimal)r.GetDecimal("heuresTravaille")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return liste;
+        }
+
+        
 
 
 

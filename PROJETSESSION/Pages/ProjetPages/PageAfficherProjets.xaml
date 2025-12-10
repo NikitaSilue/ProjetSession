@@ -21,10 +21,10 @@
 
         <TextBlock x:Name="tbltexte" TextAlignment="Center" Text="LISTE DE TOUS LES PROJETS" Foreground="Green"  FontSize="32" Margin="20"/>
         
-        <GridView x:Name="lvListeProjet" Grid.Row="1"  IsItemClickEnabled="True" ItemClick="lvListeProjet_ItemClick" >
+        <GridView x:Name="lvListeProjet" Grid.Row="1"  IsItemClickEnabled="True" ItemClick="lvListeProjet_ItemClick">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Projets">
-                    <StackPanel  Margin="20">
+                    <StackPanel  Margin="20" Width="150" Spacing="5">
 
                         
                             <TextBlock x:Name="tbxCode" Text="{x:Bind NoProjet, Mode=OneWay}" Foreground="Green" TextAlignment="Center" Margin="5" />
